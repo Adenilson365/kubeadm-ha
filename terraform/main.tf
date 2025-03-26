@@ -41,14 +41,14 @@ module "vm-worker" {
 module "vm-haproxy-adm" {
   source            = "./modules/vm"
   vm_name           = "haproxy-adm-${count.index}"
-  vm_machine_type   = "e2-medium"
+  vm_machine_type   = "e2-standard-4"
   vm_network_name   = var.vpc_name
   vm_subnet_name    = "subnet-us-east1"
   vm_hostname       = "haproxyadm${count.index}.node"
   vm_zone = var.vm_zone_haproxy
   file_startup_script = file("./start.sh")
   depends_on = [ module.network-gcp ]
-  count = 0
+  count = 1
   use_public_ip = true
 }
 
